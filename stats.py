@@ -102,6 +102,7 @@ while True:
 
     if not button_B.value:
         subprocess.run("sudo python3 /home/pi/launcher.py", shell=True)
+        quit()
 
     # Display image.
     disp.image(image, rotation)
