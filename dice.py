@@ -33,7 +33,6 @@ not support PIL/pillow (python imaging library)!
 """
 
 import subprocess
-import time
 import random
 from colorsys import hsv_to_rgb
 import board
