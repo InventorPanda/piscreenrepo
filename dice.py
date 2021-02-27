@@ -34,6 +34,7 @@ not support PIL/pillow (python imaging library)!
 
 import subprocess
 import random
+import time
 from colorsys import hsv_to_rgb
 import board
 from digitalio import DigitalInOut, Direction
