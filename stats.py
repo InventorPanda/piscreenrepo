@@ -3,8 +3,6 @@
 
 # -*- coding: utf-8 -*-
 
-import random
-import time
 import subprocess
 import digitalio
 import board
