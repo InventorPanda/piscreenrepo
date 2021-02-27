@@ -1,37 +1,3 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
-
-# Copyright (c) 2017 Adafruit Industries
-# Author: James DeVito
-# Ported to RGB Display by Melissa LeBlanc-Williams
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-
-# This example is for use on (Linux) computers that are using CPython with
-# Adafruit Blinka to support CircuitPython libraries. CircuitPython does
-# not support PIL/pillow (python imaging library)!
-"""
-This example is for use on (Linux) computers that are using CPython with
-Adafruit Blinka to support CircuitPython libraries. CircuitPython does
-not support PIL/pillow (python imaging library)!
-"""
-
 import subprocess
 import random
 import time
@@ -153,9 +119,9 @@ while True:
         fillCol = "#00FF00"
         if indx == i:
             fillCol = "#00FFFF"
-            draw.rectangle((0, y-12, 64, y+12), fill=(0, 128, 0))
+            draw.rectangle((0, y, 64, y+24), fill=(0, 128, 0))
 
-        draw.text((12, y), "d" + str(diceList[i]), font=fnt, fill=fillCol)
+        draw.text((3, y), "d" + str(diceList[i]), font=fnt, fill=fillCol)
         y += 24
 
     # Display the Image
