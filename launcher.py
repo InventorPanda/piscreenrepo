@@ -100,17 +100,18 @@ rebootdict = {
     "command": "sudo reboot"
 }
 
+updatedict = {
+    "name": "Update",
+    "command": "sudo bash /home/pi/piscreenrepo/refresh.sh"
+}
 
-launchlist = [statsdict, clockdict, dicedict, shutdowndict, rebootdict]
+launchlist = [clockdict, dicedict, updatedict, rebootdict, shutdowndict, statsdict]
 
 top = 12
 y = top
 
-print("Starting")
-
 def constrain(val, minVal, maxVal):
     return min(maxVal, max(minVal, val))
-
 
 while True:
 
@@ -119,6 +120,7 @@ while True:
 
     y = top
 
+    # move the cursor around
     if not button_U.value:
         indx -= 1
     if not button_D.value:
@@ -126,6 +128,7 @@ while True:
         
     indx = constrain(indx, 0, len(launchlist)-1)
 
+    # draw the application list
     for i in range(len(launchlist)):
 
         fillCol = "#00FF00"
