@@ -116,7 +116,7 @@ def constrain(val, minVal, maxVal):
 while True:
 
     #Clear the screen
-    draw.rectangle((6, top/2, 120, 24*(len(launchlist)+1)), outline="#00FF00", fill=(0, 0, 0))
+    draw.rectangle((6, top/2, 192, 24*(len(launchlist)+1)), outline="#00FF00", fill=(0, 0, 0))
 
     y = top
 
