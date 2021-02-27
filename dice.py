@@ -109,25 +109,30 @@ udlr_outline = "#00FFFF"
 button_fill = "#FF00FF"
 button_outline = "#FFFFFF"
 
-fnt = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 30)
+fnt = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24)
+
+indx = 0
+
+diceList = [2, 4, 6, 8, 10, 12, 20]
 
 num  = 0
 roll = 0
+
+def constrain(val, minVal, maxVal):
+    return min(maxVal, max(minVal, val))
 
 while True:
 
     draw.rectangle((0, 0, 240, 240), fill=0)
 
     if not button_U.value:  # up pressed
-        num = 20
+        indx -= 1
+
     if not button_D.value:  # down pressed
-        num = 10
-    if not button_L.value:  # left pressed
-        num = 4
-    if not button_R.value:  # down pressed
-        num = 6
-    if not button_R.value:  # center pressed
-        num = 8
+        indx += 1
+        
+    indx = constrain(indx, 0, len(diceList)-1)
+    num = diceList[indx]
 
     if not button_A.value:  # roll on A pressed
         roll = random.randint(1, num)
@@ -136,12 +141,23 @@ while True:
         subprocess.run("sudo python3 /home/pi/piscreenrepo/launcher.py", shell=True)
         quit()
     
-    rollStr = "d" + str(num) + ": " + str(roll)
+    rollStr = str(roll) + "/" + str(num)
 
-    draw.text((50, 90), rollStr, font=fnt, fill=udlr_fill)
+    draw.text((120, 96), rollStr, font=fnt, fill=udlr_fill)
+
+    y = 24
+
+     for i in range(len(diceList)):
+
+        fillCol = "#00FF00"
+        if indx == i:
+            fillCol = "#00FFFF"
+            draw.rectangle((0, y-12, 64, y+12), fill=(0, 128, 0))
+
+        draw.text((12, y), "d" + str(diceList[i]), font=fnt, fill=fillCol)
+        y += 24
 
     # Display the Image
     disp.image(image)
 
     time.sleep(0.1)
-
