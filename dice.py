@@ -134,7 +134,7 @@ while True:
         roll = random.randint(1, num)
     
     if not button_B.value:  # clear number
-        subprocess.run("sudo python3 /home/pi/launcher.py", shell=True)
+        subprocess.run("sudo python3 /home/pi/piscreenrepo/launcher.py", shell=True)
         quit()
     
     rollStr = "d" + str(num) + ": " + str(roll)
