@@ -116,7 +116,7 @@ def constrain(val, minVal, maxVal):
 while True:
 
     #Clear the screen
-    draw.rectangle((6, top/2, 96, 24*(len(launchlist)+1)), outline="#00FF00", fill=(0, 0, 0))
+    draw.rectangle((6, top/2, 120, 24*(len(launchlist)+1)), outline="#00FF00", fill=(0, 0, 0))
 
     y = top
 
@@ -139,6 +139,7 @@ while True:
     if not button_A.value:
         cmd = launchlist[indx]["command"]
         subprocess.run(cmd, shell=True)
+        quit()
     
     disp.image(image, 180)
     time.sleep(0.1)
