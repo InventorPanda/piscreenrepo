@@ -127,6 +127,8 @@ while True:
         num = 4
     if not button_R.value:  # down pressed
         num = 6
+    if not button_R.value:  # center pressed
+        num = 8
 
     if not button_A.value:  # roll on A pressed
         roll = random.randint(1, num)
