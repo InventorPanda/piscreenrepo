@@ -101,7 +101,7 @@ while True:
     draw.text((x, y), Temp, font=font, fill="#00FF00")
 
     if not button_B.value:
-        subprocess.run("sudo python3 /home/pi/launcher.py", shell=True)
+        subprocess.run("sudo python3 /home/pi/piscreenrepo/launcher.py", shell=True)
         quit()
 
     # Display image.
