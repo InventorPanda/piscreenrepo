@@ -133,6 +133,7 @@ while True:
     
     if not button_B.value:  # clear number
         subprocess.run("sudo python3 /home/pi/launcher.py", shell=True)
+        quit()
     
     rollStr = "d" + str(num) + ": " + str(roll)
 
