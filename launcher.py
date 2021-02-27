@@ -78,17 +78,17 @@ indx = 0
 
 statsdict = {
     "name": "Stats",
-    "command": "sudo python3 /home/pi/stats.py"
+    "command": "sudo python3 /home/pi/piscreenrepo/stats.py"
 }
 
 dicedict = {
     "name": "Dice",
-    "command": "sudo python3 /home/pi/dice.py"
+    "command": "sudo python3 /home/pi/piscreenrepo/dice.py"
 }
 
 clockdict = {
     "name": "Clock",
-    "command": "sudo python3 /home/pi/clock.py"
+    "command": "sudo python3 /home/pi/piscreenrepo/clock.py"
 }
 
 shutdowndict = {
