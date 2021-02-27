@@ -1,3 +1,6 @@
+# Template file for making new apps.
+
+import time
 import subprocess
 from colorsys import hsv_to_rgb
 import board
