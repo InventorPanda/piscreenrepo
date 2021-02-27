@@ -1,6 +1,7 @@
 # Launcher.py, runs at startup.
 
 import subprocess
+import time
 from colorsys import hsv_to_rgb
 import board
 from digitalio import DigitalInOut, Direction
