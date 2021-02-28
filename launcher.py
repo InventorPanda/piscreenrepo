@@ -105,7 +105,12 @@ updatedict = {
     "command": "sudo bash /home/pi/piscreenrepo/refresh.sh"
 }
 
-launchlist = [clockdict, dicedict, updatedict, rebootdict, shutdowndict, statsdict]
+pixelartdict = {
+    "name": "Update",
+    "command": "sudo bash /home/pi/piscreenrepo/refresh.sh"
+}
+
+launchlist = [clockdict, dicedict, updatedict, pixelartdict, rebootdict, shutdowndict, statsdict]
 
 top = 12
 y = top
@@ -141,7 +146,7 @@ while True:
     if not button_A.value:
         cmd = launchlist[indx]["command"]
         subprocess.run(cmd, shell=True)
-        if not indx == 2
+        if not indx == 2:
             quit()
     
     disp.image(image, 180)
