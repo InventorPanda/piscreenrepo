@@ -58,15 +58,19 @@ backlight.value = True
 width = disp.width
 height = disp.height
 image = Image.new("RGB", (width, height))
- 
-# Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
- 
-# Clear display.
-disp.image(image)
+imgOverlay = Image.new("RGBA", (width, height))
+
+pixelWidth = width/32
+pixelHeight = width/32
+pixelSize = 32
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
+drawOnTop = ImageDraw.Draw(imgOverlay)
+ 
+# Clear display.
+disp.image(image)
+disp.image(imgOverlay)
  
 # Draw a black filled box to clear the image.
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
@@ -96,8 +100,19 @@ while True:
 
     if not showMenu:
         if not button_R.value:
-            cursorX 
+            cursorX ++
+        if not button_L.value:
+            cursorX --
+        if not button_U.value:
+            cursorY --
+        if not button_D.value:
+            cursorY ++
+      cursorX = constrain(cursorX, 0, pixelSize)
+      cursorY = constrain(cursorY, 0, pixelSize)
 
+    if not button_A.value: # Add a pixel to the image.
+        drawOnTop.rectangle((cursorX * pixelWidth, cursorY * pixelHeight, (cursorX+1)*pixelWidth, (cursorY+1)*pixelHeight), fill=colorList[cursorColIndx])
+    
     if not button_B.value:  # Pull up the menu
         if showMenu == True:
             showMenu = False
@@ -123,9 +138,11 @@ while True:
                     subprocess.run("sudo python3 /home/pi/piscreenrepo/launcher.py", shell=True) # Quit after going back to the launcher
                     quit()
                 else if menuIndx == 1:
-                    image.save("image.png")
+                    imgOverlay.save("image.png")
                 else if menuIndx == 0:
                     cursorColIndx += 1
                     cursorColIndx = constrain(cursorColIndx, 0, len(colorList)-1)
+
     disp.image(image)
+    disp.image(imgOverlay)
     time.sleep(0.1)
