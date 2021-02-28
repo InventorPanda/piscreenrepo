@@ -58,7 +58,6 @@ backlight.value = True
 width = disp.width
 height = disp.height
 image = Image.new("RGB", (width, height))
-imgOverlay = Image.new("RGBA", (width, height))
 
 pixelWidth = width/32
 pixelHeight = width/32
@@ -66,11 +65,9 @@ pixelSize = 32
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
-drawOnTop = ImageDraw.Draw(imgOverlay)
  
 # Clear display.
 disp.image(image)
-disp.image(imgOverlay)
  
 # Draw a black filled box to clear the image.
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
@@ -95,24 +92,22 @@ def constrain(val, minVal, maxVal):
 
 while True:
 
-    #Clear the screen
-    draw.rectangle((0, 0, width, height), outline=0, fill=0)
-
+    #DON'T clear the screen
     if not showMenu:
         if not button_R.value:
-            cursorX ++
+            cursorX += 1
         if not button_L.value:
-            cursorX --
+            cursorX -= 1
         if not button_U.value:
-            cursorY --
+            cursorY -= 1
         if not button_D.value:
-            cursorY ++
+            cursorY += 1
       cursorX = constrain(cursorX, 0, pixelSize)
       cursorY = constrain(cursorY, 0, pixelSize)
 
     if not button_A.value: # Add a pixel to the image.
-        drawOnTop.rectangle((cursorX * pixelWidth, cursorY * pixelHeight, (cursorX+1)*pixelWidth, (cursorY+1)*pixelHeight), fill=colorList[cursorColIndx])
-    
+        draw.rectangle((cursorX * pixelWidth, cursorY * pixelHeight, (cursorX+1)*pixelWidth, (cursorY+1)*pixelHeight), fill=colorList[cursorColIndx])
+
     if not button_B.value:  # Pull up the menu
         if showMenu == True:
             showMenu = False
@@ -137,12 +132,12 @@ while True:
                 if menuIndx == 2:
                     subprocess.run("sudo python3 /home/pi/piscreenrepo/launcher.py", shell=True) # Quit after going back to the launcher
                     quit()
-                else if menuIndx == 1:
-                    imgOverlay.save("image.png")
-                else if menuIndx == 0:
-                    cursorColIndx += 1
-                    cursorColIndx = constrain(cursorColIndx, 0, len(colorList)-1)
+                else:
+                    if menuIndx == 1:
+                        image.save("image.png")
+                    if menuIndx == 0:
+                        cursorColIndx += 1
+                        cursorColIndx = constrain(cursorColIndx, 0, len(colorList)-1)
 
     disp.image(image)
-    disp.image(imgOverlay)
     time.sleep(0.1)
